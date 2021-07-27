@@ -1,0 +1,24 @@
+{
+  "name": "audiomancer-discordbot",
+  "version": "1.0.0",
+  "description": "Useful to play audio files in Discord chats",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmschrack/Audiomancer-DiscordBot.git"
+  },
+  "author": "Jonathan Schrack",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmschrack/Audiomancer-DiscordBot/issues"
+  },
+  "homepage": "https://github.com/jmschrack/Audiomancer-DiscordBot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  }
+}
