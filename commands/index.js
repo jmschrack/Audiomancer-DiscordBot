@@ -166,8 +166,19 @@ const viewPlaylist={
 const Join={
     name: "join",
     description:"Joins your voice channel",
-    execute(message, botState){
-
+    async execute(message, botState){
+        console.info("/join::enter");
+        if(message.member.voice.channel){
+          //  try{
+            const connection = await message.member.voice.channel.join();
+            botState.voiceConnetion=connection;
+         //   }catch(exception){
+         //       console.error("Failed to join.");
+       //     }
+            
+        }else{
+            message.reply("You're not currently in a voice channel");
+        }
     }
 }
 
