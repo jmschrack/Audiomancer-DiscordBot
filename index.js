@@ -1,3 +1,4 @@
+
 require('dotenv').config();
 const Discord = require('discord.js');
 const bot = new Discord.Client({intents:[Discord.Intents.FLAGS.GUILDS,Discord.Intents.FLAGS.GUILD_MESSAGES]});
@@ -22,6 +23,7 @@ const botState ={};
 
 
 bot.on('ready', ()=>{
+    console.info("Bot logged in on:");
     bot.guilds.cache.forEach((value,key)=>{
         console.info(value.name);
     });
@@ -68,27 +70,23 @@ bot.on('INTERACTION_CREATE', async interaction=>{
 });
 
 bot.on('message',async message =>{
-    //console.log(message);
+    //
     if(message.channel.id!=process.env.LISTEN_CHANNEL) return;
+    //console.log(message);
     if(!message.content.startsWith("/")) return;
     
     let options=message.content.split(' ');
     const key = options[0].substring(1);
     options=options.slice(1);
     message.options=options;
-    if(message.content==='/join'){
-        if(message.member.voice.channel){
-            const connection = await message.member.voice.channel.join();
-           //connection.on('debug', console.log);
-            botState.voiceConnetion=connection;
-            // botState.voiceConnetion=connection;
-            //const ytdl = require('ytdl-core');
-            //const dispatcher=connection.play(ytdl('https://www.youtube.com/watch?v=cirucvXMhyc',{filter:'audioonly'}));
-        }else{
-            message.reply('You need to join a voice channel first!');
+    
+    if(bot.commands.has(key)){
+        try{
+            await bot.commands.get(key).execute(message,botState);
+        }catch(exception){
+            message.reply("There was an error processing that command.");
+            console.error(exception);
         }
-    }else if(bot.commands.has(key)){
-        bot.commands.get(key).execute(message,botState);
     }
 });
 
