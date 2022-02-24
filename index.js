@@ -30,6 +30,12 @@ bot.on('ready', ()=>{
     
 });
 
+bot.on('error',error => {
+    console.error('The WebSocket encountered an error:', error);
+});
+
+
+
 function replacer(key,value){
     if(key=="execute") return undefined;
     return value;

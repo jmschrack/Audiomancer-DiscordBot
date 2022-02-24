@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Useful to play audio files in Discord chats",
   "main": "index.js",
+  "bin": "./index.js",
   "private": true,
   "scripts": {
     "start": "node index.js",
@@ -26,6 +27,9 @@
     "node-fetch": "^2.6.1",
     "opusscript": "^0.0.8",
     "tweetnacl": "^1.0.3",
-    "ytdl-core": "^4.9.0"
+    "ytdl-core": "^4.9.1"
+  },
+  "pkg": {
+    "assets": ".env"
   }
 }

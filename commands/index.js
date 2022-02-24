@@ -1,6 +1,13 @@
 const Discord = require('discord.js');
 const { filterFormats } = require('ytdl-core');
 
+const cleanup={
+    name: "cleanup",
+    description: "Deletes old commands",
+    execute:function(interaction,botState){
+        
+    }
+}
 
 const PlayBG = {
     name: "playaudio",
@@ -33,7 +40,8 @@ const PlayBG = {
             dispatcher=botState.voiceConnetion.play(url); 
         }
         dispatcher.on('start', () => {
-            interaction.channel.send("Playing!");
+            interaction.channel.send(`Playing: <${url}>`);
+            interaction.delete();
             console.log('audio.mp3 is now playing!');
         });
         
@@ -162,6 +170,7 @@ const viewPlaylist={
         message.channel.send(list.join('\n'));
     }
 }
+
 
 const Join={
     name: "join",
